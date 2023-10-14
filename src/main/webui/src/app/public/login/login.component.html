@@ -1,0 +1,31 @@
+<form #form="ngForm" [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="m-0">Login</h3>
+        </div>
+        <div class="card-body">
+          <app-page-errors [errors]="errors"></app-page-errors>
+          <div class="mb-3">
+            <label for="login">Login</label>
+            <input id="login" formControlName="login" class="form-control"
+                   [ngClass]="{ 'is-invalid': form.submitted && controls.login.invalid }">
+            <div *ngIf="form.submitted && controls.login.invalid" class="text-danger">
+              <small *ngIf="controls.login.errors?.required">Login is required.</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password">Password</label>
+            <input id="password" type="password" formControlName="password" class="form-control"
+                   [ngClass]="{ 'is-invalid': form.submitted && controls.password.invalid }">
+            <div *ngIf="form.submitted && controls.password.invalid" class="text-danger">
+              <small *ngIf="controls.password.errors?.required">Password is required.</small>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary float-right">Login</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
